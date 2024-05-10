@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import "preline/preline";
 import { IStaticMethods } from "preline/preline";
@@ -13,13 +13,27 @@ function App() {
     window.HSStaticMethods.autoInit();
   }, [location.pathname]);
 
+  const isDarkMode = () => {
+    const savedMode = localStorage.getItem('darkMode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  }
+  const [darkMode, setDarkMode] = useState(isDarkMode());
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  useEffect(() => {
+    localStorage.setItem('darkMode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  
   return (
-    <>
-      <Navbar />
+    <div className={darkMode ? 'dark' : ''}>
+      <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
       <Outlet />
       <Footer />
-    </>
+    </div>
   );
 }
 

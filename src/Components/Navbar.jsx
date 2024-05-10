@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
-const Navbar = () => {
+const Navbar = ({ darkMode, toggleDarkMode }) => {
 
   const Navlinks = <>
     
@@ -14,13 +14,41 @@ const Navbar = () => {
     <NavLink to={'/manage_my_food'} className={({ isActive }) => isActive ? `text-blue-600 dark:text-blue-500 font-medium` : `font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-neutral-400 dark:hover:text-neutral-500`}>Manage My Food</NavLink>
     <NavLink to={'/my_food_request'} className={({ isActive }) => isActive ? `text-blue-600 dark:text-blue-500 font-medium` : `font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-neutral-400 dark:hover:text-neutral-500`}>My Food Request</NavLink>
 
-    
-    <NavLink to={'/login'} className={({ isActive }) => isActive ? `text-blue-600 dark:text-blue-500 flex items-center gap-x-2 font-medium  sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-neutral-700 `: `flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-blue-500`} >
+    <NavLink to={'/login'} className={({ isActive }) => isActive ? `text-blue-600 dark:text-blue-500 flex items-center gap-x-2 font-medium  sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-neutral-700 ` : `flex items-center gap-x-2 font-medium text-gray-500 hover:text-blue-600 sm:border-s sm:border-gray-300 sm:my-6 sm:ps-6 dark:border-neutral-700 dark:text-neutral-400 dark:hover:text-blue-500`} >
       <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
         <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
       </svg>
       Log in
     </NavLink>
+    
+    <button onClick={toggleDarkMode} type="button" className="items-center gap-x-2 py-2 px-3  rounded-full text-sm text-white hover:bg-white/20">
+      {
+        darkMode ? <div className='flex font-medium justify-center items-center gap-2'>
+          <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+          light
+        </div>
+          : <div className='text-gray-500 font-medium gap-2 flex justify-center items-center'>
+            <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg> dark
+          </div>
+      }
+      
+      
+    </button>
+    
+    
+    
    
   </>
   return (
