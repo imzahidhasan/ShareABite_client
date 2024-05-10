@@ -21,7 +21,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       Log in
     </NavLink>
     
-    <button onClick={toggleDarkMode} type="button" className="items-center gap-x-2 py-2 px-3  rounded-full text-sm text-white hover:bg-white/20">
+    <button onClick={toggleDarkMode} type="button" className="items-center gap-x-2 py-2 px-3  rounded-full text-sm  text-white dark:hover:bg-white/20 hover:bg-gray-400">
       {
         darkMode ? <div className='flex font-medium justify-center items-center gap-2'>
           <svg class="flex-shrink-0 size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
