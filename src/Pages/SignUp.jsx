@@ -1,8 +1,10 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
+import useAuth from '../Firebase/useAuth';
+import { Link } from 'react-router-dom';
 
 const SignUp = () => {
-
+    const { createUser, updateUser } = useAuth()
     const {
         register,
         handleSubmit,
@@ -11,7 +13,11 @@ const SignUp = () => {
     } = useForm()
 
     const onSubmit = (data) => {
-        console.log(data);
+        const { name, email, password, photoURL } = data
+        createUser(email, password)
+            .then(user => {
+                updateUser(name, photoURL)
+            })
         reset()
     }
 
@@ -24,9 +30,9 @@ const SignUp = () => {
                         <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">Sign up</h1>
                         <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
                             Already have an account?
-                            <a className="text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500" href="../examples/html/signin.html">
+                            <Link to={'/login'} className="text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500">
                                 Sign in here
-                            </a>
+                            </Link>
                         </p>
                     </div>
 
@@ -36,28 +42,28 @@ const SignUp = () => {
                                 <div>
                                     <label htmlFor="name" className="block text-sm mb-2 dark:text-white">Name</label>
                                     <div className="relative">
-                                        <input  {...register("name", { required: true })}  type="text" id="name" name="name" className="py-3 px-4 block w-full border-gray-200 border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
+                                        <input  {...register("name", { required: true })} type="text" id="name" name="name" className="py-3 px-4 block w-full border-gray-200 border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
                                     </div>
                                     {errors.name && <p className='text-sm text-red-600 font-medium'>This field is required</p>}
                                 </div>
-                               
+
                                 <div>
                                     <label htmlFor="email" className="block text-sm mb-2 dark:text-white">Email address</label>
                                     <div className="relative">
-                                        <input  {...register("email", { required: true })}  type="email" id="email" name="email" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm border focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"/>
+                                        <input  {...register("email", { required: true })} type="email" id="email" name="email" className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm border focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
                                     </div>
                                     {errors.email && <p className='text-sm text-red-600 font-medium'>This field is required</p>}
                                 </div>
-                                
+
                                 <div>
                                     <label htmlFor="photoURL" className="block text-sm mb-2 dark:text-white">Photo URL</label>
                                     <div className="relative">
-                                        <input  {...register("photoURL", { required: true })}  type="photoURL" id="photoURL" name="photoURL" className="py-3 px-4 block w-full border-gray-200 border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"/>
-                                            
+                                        <input  {...register("photoURL", { required: true })} type="url" id="photoURL" name="photoURL" className="py-3 px-4 block w-full border-gray-200 border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" />
+
                                     </div>
                                     {errors.photoURL && <p className='text-sm text-red-600 font-medium'>This field is required</p>}
                                 </div>
-                                
+
                                 <div>
                                     <label className="block text-sm mb-2 dark:text-white">Password</label>
                                     <div className="relative">
@@ -76,15 +82,15 @@ const SignUp = () => {
                                     {errors.password && <p className='text-sm text-red-600 font-medium'>This field is required</p>}
                                 </div>
 
-                              
+
                                 <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Sign up</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-      </>
-  )
+        </>
+    )
 }
 
 export default SignUp
