@@ -8,45 +8,46 @@ import ManageMyFood from "../Pages/ManageMyFood"
 import MyFoodRequest from "../Pages/MyFoodRequest"
 import Login from "../Pages/Login"
 import SignUp from "../Pages/SignUp"
+import PrivetRoute from "./PrivetRoute"
 
 
 
-    const routes = createBrowserRouter([
-        {
-            path: '/',
-            element: <App />,
-            errorElement: <ErrorPage/>,
-            children: [
-                {
-                    index: true,
-                    element:<HomePage/>
-                },
-                {
-                    path: 'available_food',
-                    element:<AvaiableFood/>
-                },
-                {
-                    path: 'add_food',
-                    element:<AddFood/>
-                },
-                {
-                    path: 'manage_my_food',
-                    element:<ManageMyFood/>
-                },
-                {
-                    path: 'my_food_request',
-                    element:<MyFoodRequest/>
-                },
-                {
-                    path: 'login',
-                    element:<Login/>
-                },
-                {
-                    path: 'sign_up',
-                    element:<SignUp/>
-                }
-            ]
-        }
-    ])
+const routes = createBrowserRouter([
+    {
+        path: '/',
+        element: <App />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                index: true,
+                element: <HomePage />
+            },
+            {
+                path: 'available_food',
+                element: <AvaiableFood />
+            },
+            {
+                path: 'add_food',
+                element: <PrivetRoute><AddFood /></PrivetRoute>
+            },
+            {
+                path: 'manage_my_food',
+                element: <PrivetRoute><ManageMyFood /></PrivetRoute>
+            },
+            {
+                path: 'my_food_request',
+                element: <PrivetRoute> <MyFoodRequest /></PrivetRoute>
+            },
+            {
+                path: 'login',
+                element: <Login />
+            },
+            {
+                path: 'sign_up',
+                element: <SignUp />
+            }
+        ]
+    }
+])
 
 export default routes
