@@ -27,14 +27,34 @@ const AvaiableFood = () => {
   } = useForm()
 
   const fetchSearchData = async (data) => {
-    await axios.post(`http://localhost:5000/search_name/${data.searchName}`)
+    await axios.get(`http://localhost:5000/search_name/${data.searchName}`)
       .then(res => setData(res.data))
   }
 
   const onSubmit = (data) => {
     fetchSearchData(data)
   }
+  const NewToOld = async () => {
+    await axios.get('http://localhost:5000/sort_acceding')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err))
+  }
+  const OldToNew = async () => {
+    await axios.get('http://localhost:5000/sort_descending')
+      .then(res => setData(res.data))
+      .catch(err => console.log(err))
+  }
+  const onSelect = (e) => {
+    const num = parseInt(e.target.value)
+    if (num === 1) {
+      console.log(num);
+      NewToOld()
+    } else if (num === 2) {
+      console.log(num);
+      OldToNew()
 
+    }
+  }
 
 
   useEffect(() => {
@@ -46,11 +66,13 @@ const AvaiableFood = () => {
       <Heading heading={'Available Foods '} para={'Explore our available food section, a vibrant hub where generosity meets need. Here, we showcase a diverse array of fresh produce, pantry staples, and nourishing meals, generously donated by our community of contributors. From surplus harvests to culinary delights, each offering represents an opportunity to make a meaningful difference. Join us in combating food insecurity and fostering compassion, one meal at a time'} />
       <div className='flex flex-col-reverse sm:flex-row sm:justify-around'>
         <div>
-          <select class="py-3 px-4 my-2 pe-9 block max-w-sm border mx-5 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
-            <option selected="">Sort by expiry date</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+          <select
+            onChange={onSelect}
+            className="py-3 px-4 my-2 pe-9 block max-w-sm border mx-5 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
+          >
+            <option value="">Sort by Date</option>
+            <option value="1">New to Old</option>
+            <option value="2">Old to New</option>
           </select>
         </div>
         <form onSubmit={handleSubmit(onSubmit)}>

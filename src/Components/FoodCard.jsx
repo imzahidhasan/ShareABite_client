@@ -12,10 +12,13 @@ const FoodCard = ({ data }) => {
                      {data.foodName}
                   </h3>
                   <div className="mb-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Quantity: {data.quantity}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Pickup location: {data.pickupLocation}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">Expiry Date: {data.expiryDateTime}</p>
-                      <p className="text-sm text-gray-600 text-balance dark:text-gray-400">Notes:{data.additionalNotes}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400"><span className='font-medium'>Quantity:</span> {data.quantity}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400"><span className='font-medium'>Pickup location:</span>  {data.pickupLocation}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400"><span className='font-medium'>Expiry Date:</span>  {new Date(data.expiryDateTime).toLocaleDateString('en-US',{
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'})}</p>
+                      <p className="text-sm text-gray-600 text-balance dark:text-gray-400"><span className='font-medium'>Notes:</span> {data.additionalNotes}</p>
                   </div>
                   <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">
