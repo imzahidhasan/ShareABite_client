@@ -12,13 +12,7 @@ const Details = () => {
              
                 className="w-full h-64 object-cover"
               />
-              <div className="absolute top-4 left-4 bg-white rounded-full p-2">
-                <img
-                  src='https://i.ibb.co/ngfPjPP/pexels-klaus-nielsen-6287527.jpg'
-                
-                  className="w-12 h-12 rounded-full"
-                />
-              </div>
+              
             </div>
             <div className="p-6">
               <h1 className="text-3xl font-bold text-[#A98467] mb-2">name</h1>
