@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import Heading from '../Components/Heading'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import FoodCard from '../Components/FoodCard'
 
 const HomePage = () => {
   const [foods, setFoods] = useState([])
-  useEffect(() => {
-    axios()
+  const [loading, setLoading] = useState(false)
+  const fetchData = async () => {
+    setLoading(true)
+    await axios.get('http://localhost:5000/available_food/highest_quantity')
+      .then(res => {
+        setLoading(false)
+        setFoods(res.data)
+      })
+      .catch(err => console.log(err))
+  }
 
-    setFoods()
+  useEffect(() => {
+    fetchData()
+   
+
   }, [])
   return (
     <>
@@ -60,32 +71,25 @@ const HomePage = () => {
       <Heading heading={'Featured Foods'} para={'Discover our Featured Foods - an enticing showcase of abundant surplus meals and fresh produce donated by generous community members. Explore these highlighted options to find nourishing options while reducing food waste.'} />
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 m-5 container mx-auto">
-
-        <div className="flex flex-col bg-white border border-gray-200 shadow-md rounded-xl overflow-hidden dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 relative">
-          <img className="w-full h-48 object-cover rounded-t-xl" src="https://images.unsplash.com/photo-1680868543815-b8666dba60f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80" alt="Food" />
-          <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold py-1 px-2 rounded-full">Available</span>
-          <div className="p-4 md:p-5 flex-grow">
-            <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">
-              Food Name
-            </h3>
-            <div className="mb-4">
-              <p className="text-sm text-gray-600 dark:text-gray-400">Quantity: 100</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Location: Kitchen</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Expiry Date: 2024-05-20</p>
-              <p className="text-sm text-gray-600 dark:text-gray-400">Notes: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem maiores suscipit distinctio doloremque sed hic.</p>
+        {
+          loading ? <div className="flex animate-pulse">
+            <div className="flex-shrink-0">
+              <span className="size-12 block bg-gray-200 rounded-full dark:bg-neutral-700"></span>
             </div>
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <img className="w-10 h-10 rounded-full" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80" alt="Profile" />
-                <p className="text-sm font-semibold text-gray-800 dark:text-white">Ryan Wilson</p>
-              </div>
-              <Link to={`/details/${'dfgad'}`}>
-                <button className="py-2 px-4 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">View Details</button>
-              </Link>
-            </div>
-          </div>
-        </div>
 
+            <div className="ms-4 mt-2 w-full">
+              <p className="h-4 bg-gray-200 rounded-full dark:bg-neutral-700" ></p>
+
+              <ul className="mt-5 space-y-3">
+                <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+                <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+                <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+                <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+              </ul>
+            </div>
+          </div> :
+            foods.map((foodItem) => <FoodCard key={foodItem._id} data={foodItem} />)
+        }
       </div>
 
     </>
