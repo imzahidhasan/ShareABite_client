@@ -1,10 +1,11 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import useAuth from '../Firebase/useAuth'
+import axios from 'axios'
 
 const AddFood = () => {
   const { user } = useAuth()
-
+  
   const {
     register,
     handleSubmit,
@@ -18,9 +19,14 @@ const AddFood = () => {
       donatorName: user.displayName,
       donatorImage: user.photoURL,
       donatorEmail: user.email,
-      status:'available',
+      status: 'available',
     }
-    console.log(foodInfo);
+    const saveFoodToDB = async () => {
+      await axios.post('http://localhost:5000/add_food', foodInfo)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
+    }
+    saveFoodToDB()
     reset()
   }
 

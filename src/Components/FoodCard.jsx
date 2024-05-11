@@ -6,7 +6,7 @@ const FoodCard = ({ data }) => {
       <div>
           <div className="flex flex-col bg-white border border-gray-200 shadow-md rounded-xl overflow-hidden dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 relative">
               <img className="w-full h-48 object-cover rounded-t-xl" src={data.foodImage} alt="Food" />
-              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold py-1 px-2 rounded-full">Available</span>
+              <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold py-1 px-2 rounded-full">{data.status}</span>
               <div className="p-4 md:p-5 flex-grow">
                   <h3 className="text-lg font-bold text-gray-800 dark:text-white mb-2">
                      {data.foodName}
