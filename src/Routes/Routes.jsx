@@ -9,6 +9,7 @@ import MyFoodRequest from "../Pages/MyFoodRequest"
 import Login from "../Pages/Login"
 import SignUp from "../Pages/SignUp"
 import PrivetRoute from "./PrivetRoute"
+import Details from "../Pages/Details"
 
 
 
@@ -45,6 +46,10 @@ const routes = createBrowserRouter([
             {
                 path: 'sign_up',
                 element: <SignUp />
+            },
+            {
+                path: 'details/:id',
+                element:<Details/>
             }
         ]
     }

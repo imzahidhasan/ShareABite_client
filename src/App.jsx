@@ -31,7 +31,9 @@ function App() {
   return (
     <div className={darkMode ? 'dark' : ''}>
       <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
-      <Outlet />
+      <div className="min-h-96">
+        <Outlet />
+     </div>
       <Footer />
     </div>
   );
