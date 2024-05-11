@@ -49,7 +49,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: 'details/:id',
-                element:<Details/>
+                element:<PrivetRoute><Details/></PrivetRoute>
             }
         ]
     }
