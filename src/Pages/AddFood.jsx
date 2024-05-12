@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 import useAuth from '../Firebase/useAuth'
 import axios from 'axios'
+import Swal from 'sweetalert2'
 
 const AddFood = () => {
   const { user } = useAuth()
@@ -23,8 +24,24 @@ const AddFood = () => {
     }
     const saveFoodToDB = async () => {
       await axios.post('http://localhost:5000/add_food', foodInfo)
-        .then(res => console.log(res))
-        .catch(err => console.log(err))
+        .then(res => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              title: 'Successful!',
+              text: 'Your food added successfully',
+              icon: 'success'
+            })
+          }
+        })
+        .catch(err => {
+          if (err) {
+            Swal.fire({
+              title: "Error!",
+              text: "Oops! It seems there's an issue with the network. Please check your internet connection and try again.",
+              icon: "error"
+            })
+          }
+        })
     }
     saveFoodToDB()
     reset()

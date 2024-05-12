@@ -150,7 +150,7 @@ const ManageMyFood = () => {
       if (result.isConfirmed) {
         await axios.delete(`http://localhost:5000/delete/${id}`)
           .then(res => {
-            if (res.data.deletedCount) {
+            if (res.data.deletedCount>0) {
               getAllData()
               Swal.fire({
                 title: "Deleted!",
