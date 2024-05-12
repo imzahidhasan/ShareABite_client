@@ -20,7 +20,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
 
       <NavLink to={'/manage_my_food'} className={({ isActive }) => isActive ? `text-blue-600 dark:text-blue-500 font-medium` : `font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-neutral-400 dark:hover:text-neutral-500`}>Manage My Food</NavLink>
       <NavLink to={'/my_food_request'} className={({ isActive }) => isActive ? `text-blue-600 dark:text-blue-500 font-medium` : `font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-neutral-400 dark:hover:text-neutral-500`}>My Food Request</NavLink>
-
       <div>
       <div class="flex gap-2 items-center" >
         <img class="inline-block size-8 rounded-full" src={user.photoURL} alt="Image Description" />

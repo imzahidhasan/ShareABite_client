@@ -1,4 +1,7 @@
 import React from 'react'
+import { BsCalendar2DayFill, BsCalendarCheckFill } from 'react-icons/bs'
+import { IoFastFood, IoLocationSharp } from 'react-icons/io5'
+import { PiNoteFill } from 'react-icons/pi'
 import { Link } from 'react-router-dom'
 
 const FoodCard = ({ data }) => {
@@ -12,13 +15,13 @@ const FoodCard = ({ data }) => {
                      {data.foodName}
                   </h3>
                   <div className="mb-4">
-                      <p className="text-sm text-gray-600 dark:text-gray-400"><span className='font-medium'>Quantity:</span> {data.quantity}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400"><span className='font-medium'>Pickup location:</span>  {data.pickupLocation}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400"><span className='font-medium'>Expiry Date:</span>  {new Date(data.expiryDateTime).toLocaleDateString('en-US',{
+                      <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1"><IoFastFood/><span className='font-medium'>Quantity:</span> {data.quantity}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1"><IoLocationSharp /><span className='font-medium'> Pickup location:</span> {data.pickupLocation}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1"><BsCalendarCheckFill/><span className='font-medium'>Expiry Date:</span>  {new Date(data.expiryDateTime).toLocaleDateString('en-US',{
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'})}</p>
-                      <p className="text-sm text-gray-600 text-balance dark:text-gray-400"><span className='font-medium'>Notes:</span> {data.additionalNotes}</p>
+                      <p className="text-sm text-gray-600 text-balance dark:text-gray-400 flex items-center gap-1"><PiNoteFill/><span className='font-medium'>Notes:</span> {data.additionalNotes}</p>
                   </div>
                   <div className="flex items-center justify-between">
                       <div className="flex items-center gap-4">

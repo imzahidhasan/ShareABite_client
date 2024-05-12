@@ -70,7 +70,7 @@ const HomePage = () => {
 
       <Heading heading={'Featured Foods'} para={'Discover our Featured Foods - an enticing showcase of abundant surplus meals and fresh produce donated by generous community members. Explore these highlighted options to find nourishing options while reducing food waste.'} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 m-5 container mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 m-5 container mx-auto">
         {
           loading ? <div className="flex animate-pulse">
             <div className="flex-shrink-0">
