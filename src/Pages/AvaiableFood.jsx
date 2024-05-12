@@ -46,13 +46,13 @@ const AvaiableFood = () => {
   }
   const onSelect = (e) => {
     const num = parseInt(e.target.value)
+    if (num===0) {
+      return
+    }
     if (num === 1) {
-      console.log(num);
       NewToOld()
     } else if (num === 2) {
-      console.log(num);
       OldToNew()
-
     }
   }
 
@@ -70,7 +70,7 @@ const AvaiableFood = () => {
             onChange={onSelect}
             className="py-3 px-4 my-2 pe-9 block max-w-sm border mx-5 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
           >
-            <option value="">Sort by Date</option>
+            <option value="0">Sort by Date</option>
             <option value="1">New to Old</option>
             <option value="2">Old to New</option>
           </select>
