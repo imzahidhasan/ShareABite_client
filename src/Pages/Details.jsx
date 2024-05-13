@@ -21,10 +21,10 @@ const Details = () => {
   }
 
   const handleFoodRequest = (food) => {
-   
+
     const currentDate = new Date();
     const year = currentDate.getFullYear();
-    const month = String(currentDate.getMonth() + 1).padStart(2, '0'); 
+    const month = String(currentDate.getMonth() + 1).padStart(2, '0');
     const day = String(currentDate.getDate()).padStart(2, '0');
     const hours = String(currentDate.getHours()).padStart(2, '0');
     const minutes = String(currentDate.getMinutes()).padStart(2, '0');
@@ -176,7 +176,7 @@ const Details = () => {
               expiryDateTime: document.getElementById("expiryDateTime").value,
               pickupLocation: document.getElementById("pickupLocation").value,
               additionalNotes: document.getElementById("additionalNotes").value,
-              status:'requested'
+              status: 'requested'
             };
           }
         },);
@@ -186,9 +186,9 @@ const Details = () => {
             Swal.fire({
               title: 'Request Successful!',
               text: 'you successfully made a request for this food',
-              icon:'success'
+              icon: 'success'
+            })
           })
-        })
       }
     })()
   }
@@ -201,19 +201,14 @@ const Details = () => {
 
       <Helmet title='ShareABite | Food details'></Helmet>
       {
-        loading ? <div className="flex animate-pulse">
-          <div className="flex-shrink-0">
-            <span className="size-12 block bg-gray-200 rounded-full dark:bg-neutral-700"></span>
-          </div>
-
+        loading ?<div className="flex animate-pulse">
           <div className="ms-4 mt-2 w-full">
-            <p className="h-4 bg-gray-200 rounded-full dark:bg-neutral-700" ></p>
-
+            <p className="h-12 bg-gray-200 rounded-full dark:bg-neutral-700" ></p>
             <ul className="mt-5 space-y-3">
-              <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
-              <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
-              <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
-              <li className="w-full h-6 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+              <li className="w-full h-12 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+              <li className="w-full h-12 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+              <li className="w-full h-12 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
+              <li className="w-full h-12 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
             </ul>
           </div>
         </div>
@@ -226,18 +221,10 @@ const Details = () => {
 
                     className="w-full h-80 object-cover"
                   />
-
                 </div>
                 <div className="p-6">
                   <h1 className="text-3xl font-bold text-[#A98467] mb-2">{data.foodName}</h1>
-                  <div className="flex items-center mb-4">
-                    <img
-                      src={data.donatorImage}
 
-                      className="w-8 h-8 rounded-full mr-2"
-                    />
-                    <span className="text-gray-700 font-semibold">{data.donatorName}</span>
-                  </div>
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div>
                       <p className="text-gray-700 font-semibold mb-1">Quantity</p>
@@ -248,12 +235,27 @@ const Details = () => {
                       <p className="text-gray-600">{data.expiryDateTime}</p>
                     </div>
                     <div>
-                      <p className="text-gray-700 font-semibold mb-1">Pickup Location</p>
+                      <p className="text-gray-700 font-semibold mb-2">Additional Notes</p>
+                      <p className="text-gray-600 mb-6">{data.additionalNotes}</p>
+                    </div>
+                    <div>
+                      <p className='font-semibold mb-2'>Food Status</p>
+                      <span className='text-white bg-green-600 px-2 rounded-full'>{data.status}</span>
+                    </div>
+                  </div>
+                  
+                  <h1 className='text-xl font-semibold mb-2'>Donator Information</h1>
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={data.donatorImage}
+                      className="w-12 h-12 rounded-full mr-2"
+                    />
+                    <div className='flex flex-col '>
+                      <p className="text-gray-700 font-semibold">{data.donatorName}</p>
                       <p className="text-gray-600">{data.pickupLocation}</p>
                     </div>
                   </div>
-                  <p className="text-gray-700 font-semibold mb-2">Additional Notes</p>
-                  <p className="text-gray-600 mb-6">{data.additionalNotes}</p>
+                  
                   <button onClick={() => handleFoodRequest(data)} className="bg-[#A98467] hover:bg-[#8d6f56] text-white font-semibold py-2 px-4 rounded">
                     Request Food
                   </button>

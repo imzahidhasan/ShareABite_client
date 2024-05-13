@@ -5,6 +5,7 @@ import { Link, Navigate } from 'react-router-dom';
 import signup from '../assets/signup.json'
 import Lottie from 'lottie-react';
 import { Helmet } from 'react-helmet-async';
+import Swal from 'sweetalert2';
 const SignUp = () => {
     const { createUser, updateUser, user } = useAuth()
     const {
@@ -19,6 +20,18 @@ const SignUp = () => {
         createUser(email, password)
             .then(user => {
                 updateUser(name, photoURL)
+                Swal.fire({
+                    title: 'Successful',
+                    text: 'your account created successfully',
+                    icon:'success'
+                })
+            })
+            .catch(err => {
+                Swal.fire({
+                    title: 'Something went wrong',
+                    text: 'please check your internet connection and try again',
+                    icon: 'warning'
+                })
             })
         reset()
     }
@@ -31,7 +44,7 @@ const SignUp = () => {
                 user ? <Navigate to={'/'} />
                     :
                     <div className='flex flex-col-reverse md:flex-row container mx-auto'>
-                        <Lottie className='w-full md:w-1/2' animationData={signup}/>
+                        <Lottie className='w-full md:w-1/2' animationData={signup} />
                         <div className="mt-7 w-full md:w1/2 max-w-96 mx-auto bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
                             <div className="p-4 sm:p-7">
                                 <div className="text-center">

@@ -5,6 +5,8 @@ import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 import Lottie from 'lottie-react'
 import login from '../assets/login.json'
 import { Helmet } from 'react-helmet-async'
+import Swal from 'sweetalert2'
+import axios from 'axios'
 const Login = () => {
     const googleProvider = new GoogleAuthProvider
     const githubProver = new GithubAuthProvider
@@ -21,15 +23,33 @@ const Login = () => {
 
     const onSubmit = (data) => {
         const { email, password } = data
-        console.log(email, password);
         loginUser(email, password)
-            .then(user => navigate(location.state || '/'))
+            .then(user => {
+                console.log(user);
+                navigate(location.state || '/')
+            })
+            .catch(err => {
+                if (err) {
+                    Swal.fire({
+                        title: 'Incorrect email and password',
+                        text: 'Please enter your correct email and password',
+                        icon: "error"
+                    })
+                }
+            })
         reset()
     }
 
     const handleGoogleLogin = () => {
         googleLogin(googleProvider)
-            .then(user => navigate(location.state || '/'))
+            .then(async (data) => {
+                const email = data.user.email;
+                await axios.post('http://localhost:5000/jwt', { email }, { withCredentials: true })
+                    .then(res => {
+                        console.log(res.data);
+                    })
+                navigate(location.state || '/')
+            })
     }
     const handleGithubLogin = () => {
         githubLogin(githubProver)
@@ -78,7 +98,7 @@ const Login = () => {
                                                 <div class="relative">
                                                     <input  {...register("email", { required: true })} type="email" className="py-3 px-4 block w-full  border border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600" placeholder="Enter password" />
                                                 </div>
-                                                <p className="hidden text-xs text-red-600 mt-2" id="email-error">Please include a valid email address so we can get back to you</p>
+                                                {errors.email && <span className='text-red-600 text-sm'>This field is required</span>}
                                             </div>
                                             <div>
                                                 <label class="block text-sm mb-2 dark:text-white">Password</label>
@@ -95,7 +115,7 @@ const Login = () => {
                                                         </svg>
                                                     </button>
                                                 </div>
-                                                <p className="hidden text-xs text-red-600 mt-2" id="password-error">8+ characters required</p>
+                                                {errors.password && <span className='text-red-600 text-sm'>This field is required</span>}
                                             </div>
                                             <button type="submit" className="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">Sign in</button>
                                         </div>

@@ -10,7 +10,8 @@ const FoodCardHorizontal = ({ data }) => {
       <div>
           <div class="bg-white border rounded-xl shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
               <div class="flex-shrink-0 relative w-full rounded-t-xl overflow-hidden pt-[40%] sm:rounded-s-xl sm:max-w-60 md:rounded-se-none ">
-                  <img class="size-full absolute top-0 start-0 object-cover" src={ data.foodImage} alt="Image Description"/>
+                  <img class="size-full absolute top-0 start-0 object-cover" src={data.foodImage} alt="Image Description" />
+                  <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold py-1 px-2 rounded-full">{data.status}</span>
               </div>
               <div class="flex flex-wrap">
                   <div class="p-4 flex flex-col h-full sm:p-7">
