@@ -54,12 +54,12 @@ const AddFood = () => {
 
 
   return (
-    <div className='container mx-auto'>
+    <div className='container dark:bg-[#222831] mx-auto'>
       <Helmet title='ShareABite | Add Food'></Helmet>
-      <div className="bg-[#F8F4E3] min-h-screen flex flex-col-reverse md:flex-row items-center justify-center">
+      <div className=" min-h-screen flex flex-col-reverse md:flex-row items-center justify-center">
         <Lottie className='md:w-1/2' animationData={cook} />
-        <div className="bg-white md:w-1/2 w-full p-8 rounded-lg m-5 shadow-md max-w-md">
-          <h2 className="text-3xl font-bold text-[#A98467] mb-6">Add Food</h2>
+        <div className="bg-white dark:bg-[#76ABAE] md:w-1/2 w-full p-8 rounded-lg m-5 shadow-md max-w-md">
+          <h2 className="text-3xl font-bold text-[#A98467] dark:text-[#EEEEEE] mb-6">Add Food</h2>
           <form onSubmit={handleSubmit(onSubmit)} >
             <div className="mb-4">
               <label htmlFor="foodName" className="block text-gray-700 font-bold mb-2">

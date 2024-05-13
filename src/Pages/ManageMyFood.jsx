@@ -182,13 +182,13 @@ const ManageMyFood = () => {
   return (
     <div>
       <Helmet title='ShareABite | Manage my food'></Helmet>
-      <div className="bg-[#F6EEE0] min-h-screen py-8">
+      <div className="bg-[#F6EEE0] dark:bg-[#222831] min-h-screen py-8">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-[#A98467] mb-8">Manage My Foods</h1>
-          <div className="bg-white rounded-lg shadow-md">
+          <h1 className="text-4xl font-bold text-[#A98467] dark:text-[#EEEEEE] mb-8">Manage My Foods</h1>
+          <div className="bg-white  rounded-lg shadow-md">
             <table className="w-full table-auto">
               <thead className='text-left'>
-                <tr className="bg-[#A98467] text-white">
+                <tr className="bg-[#A98467] dark:bg-[#31363F] text-white">
                   <th className="px-4 py-2">Food</th>
                   <th className="px-4 py-2">Quantity</th>
                   <th className="px-4 py-2">Expiry Date</th>
@@ -214,7 +214,7 @@ const ManageMyFood = () => {
                       </ul>
                     </div>
                   </div>
-                    : data.map(food => <tr key={food._id} className="odd:bg-gray-100 even:bg-white">
+                    : data.map(food => <tr key={food._id} className="odd:bg-gray-100 dark:even:bg-[#31363F] even:bg-white dark:odd:bg-[#76ABAE]">
                       <td className="px-4 py-2 flex items-center">
 
                         <span>{food.foodName}</span>

@@ -86,7 +86,6 @@ const HomePage = () => {
             foods.map((foodItem) => <FoodCard key={foodItem._id} data={foodItem} />)
         }
       </div>
-
     </>
   )
 }

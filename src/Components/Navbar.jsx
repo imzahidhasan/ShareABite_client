@@ -25,7 +25,6 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       <NavLink to={'/my_food_request'} className={({ isActive }) => isActive ? `text-blue-600 dark:text-blue-500 font-medium` : `font-medium text-gray-500 hover:text-gray-400 sm:py-6 dark:text-neutral-400 dark:hover:text-neutral-500`}>My Food Request</NavLink>
       <div>
         <div class="flex gap-2 items-center" >
-          <img class="inline-block size-8 rounded-full" src={user.photoURL} alt="Image Description" />
           <button onClick={() => handleLogOut(user.email)} type="button" className="py-2 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
             Logout
           </button>

@@ -1,0 +1,46 @@
+{
+  "foodDonated": [
+    {
+      "year": 2019,
+      "amount": 50000
+    },
+    {
+      "year": 2020,
+      "amount": 75000
+    },
+    {
+      "year": 2021,
+      "amount": 120000
+    },
+    {
+      "year": 2022,
+      "amount": 180000
+    },
+    {
+      "year": 2023,
+      "amount": 250000
+    }
+  ],
+  "mealsProvided": [
+    {
+      "year": 2019,
+      "count": 125000
+    },
+    {
+      "year": 2020,
+      "count": 187500
+    },
+    {
+      "year": 2021,
+      "count": 300000
+    },
+    {
+      "year": 2022,
+      "count": 450000
+    },
+    {
+      "year": 2023,
+      "count": 625000
+    }
+  ]
+}

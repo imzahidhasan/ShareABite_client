@@ -219,7 +219,7 @@ const Details = () => {
             </ul>
           </div>
         </div>
-          : <div className="bg-[#F6EEE0] min-h-screen py-8">
+          : <div className="bg-[#F6EEE0] dark:bg-[#31363F] min-h-screen py-8">
             <div className="container mx-auto px-4">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
                 <div className="relative">
@@ -229,21 +229,21 @@ const Details = () => {
                     className="w-full h-80 object-cover"
                   />
                 </div>
-                <div className="p-6">
+                <div className="p-6 dark:bg-[#222831] dark:text-[#EEEEEE]">
                   <h1 className="text-3xl font-bold text-[#A98467] mb-2">{data.foodName}</h1>
 
                   <div className="grid grid-cols-2 gap-4 mb-6">
                     <div>
-                      <p className="text-gray-700 font-semibold mb-1">Quantity</p>
-                      <p className="text-gray-600">{data.quantity}</p>
+                      <p className="text-gray-700 dark:text-[#EEEEEE] font-semibold mb-1">Quantity</p>
+                      <p className="text-gray-600 dark:text-[#EEEEEE]">{data.quantity}</p>
                     </div>
                     <div>
-                      <p className="text-gray-700 font-semibold mb-1">Expiry Date</p>
-                      <p className="text-gray-600">{data.expiryDateTime}</p>
+                      <p className="text-gray-700 dark:text-[#EEEEEE] font-semibold mb-1">Expiry Date</p>
+                      <p className="text-gray-600 dark:text-[#EEEEEE]">{data.expiryDateTime}</p>
                     </div>
                     <div>
-                      <p className="text-gray-700 font-semibold mb-2">Additional Notes</p>
-                      <p className="text-gray-600 mb-6">{data.additionalNotes}</p>
+                      <p className="text-gray-700 dark:text-[#EEEEEE] font-semibold mb-2">Additional Notes</p>
+                      <p className="text-gray-600 dark:text-[#EEEEEE] mb-6">{data.additionalNotes}</p>
                     </div>
                     <div>
                       <p className='font-semibold mb-2'>Food Status</p>
@@ -258,12 +258,12 @@ const Details = () => {
                       className="w-12 h-12 rounded-full mr-2"
                     />
                     <div className='flex flex-col '>
-                      <p className="text-gray-700 font-semibold">{data.donatorName}</p>
-                      <p className="text-gray-600">{data.pickupLocation}</p>
+                      <p className="text-gray-700 dark:text-[#EEEEEE] font-semibold">{data.donatorName}</p>
+                      <p className="text-gray-600 dark:text-[#EEEEEE]">{data.pickupLocation}</p>
                     </div>
                   </div>
 
-                  <button onClick={() => handleFoodRequest(data)} className="bg-[#A98467] hover:bg-[#8d6f56] text-white font-semibold py-2 px-4 rounded">
+                  <button onClick={() => handleFoodRequest(data)} className="bg-[#A98467] dark:text-[#EEEEEE] hover:bg-[#8d6f56] text-white font-semibold py-2 px-4 rounded">
                     Request Food
                   </button>
                 </div>
