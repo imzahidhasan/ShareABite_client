@@ -117,7 +117,7 @@ const AvaiableFood = () => {
               </ul>
             </div>
           </div> :
-            layout ? data.map(data => <FoodCardHorizontal key={data._id} />)
+            layout ? data.map(data => <FoodCardHorizontal key={data._id} data={data} />)
               :
               data.map(data => <FoodCard key={data._id} data={data} />)
 

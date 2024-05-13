@@ -3,6 +3,8 @@ import { useForm } from 'react-hook-form'
 import useAuth from '../Firebase/useAuth'
 import axios from 'axios'
 import Swal from 'sweetalert2'
+import Lottie from 'lottie-react'
+import cook from '../assets/cook.json'
 
 const AddFood = () => {
   const { user } = useAuth()
@@ -50,9 +52,10 @@ const AddFood = () => {
 
 
   return (
-    <div>
-      <div className="bg-[#F8F4E3] min-h-screen flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg m-5 shadow-md max-w-md w-full">
+    <div className='container mx-auto'>
+      <div className="bg-[#F8F4E3] min-h-screen flex flex-col-reverse md:flex-row items-center justify-center">
+        <Lottie className='md:w-1/2' animationData={cook}/>
+        <div className="bg-white md:w-1/2 w-full p-8 rounded-lg m-5 shadow-md max-w-md">
           <h2 className="text-3xl font-bold text-[#A98467] mb-6">Add Food</h2>
           <form onSubmit={handleSubmit(onSubmit)} >
             <div className="mb-4">

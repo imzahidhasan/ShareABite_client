@@ -1,24 +1,40 @@
 import React from 'react'
+import { BsCalendarCheckFill } from 'react-icons/bs';
+import { IoFastFood, IoLocationSharp } from 'react-icons/io5';
+import { PiNoteFill } from 'react-icons/pi';
+import { Link } from 'react-router-dom';
 
-const FoodCardHorizontal = () => {
+const FoodCardHorizontal = ({ data }) => {
+    console.log(data);
   return (
       <div>
           <div class="bg-white border rounded-xl shadow-sm sm:flex dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
               <div class="flex-shrink-0 relative w-full rounded-t-xl overflow-hidden pt-[40%] sm:rounded-s-xl sm:max-w-60 md:rounded-se-none ">
-                  <img class="size-full absolute top-0 start-0 object-cover" src="https://images.unsplash.com/photo-1680868543815-b8666dba60f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2532&q=80" alt="Image Description"/>
+                  <img class="size-full absolute top-0 start-0 object-cover" src={ data.foodImage} alt="Image Description"/>
               </div>
               <div class="flex flex-wrap">
                   <div class="p-4 flex flex-col h-full sm:p-7">
                       <h3 class="text-lg font-bold text-gray-800 dark:text-white">
-                          Card title
+                          {data.foodName}
                       </h3>
-                      <p class="mt-1 text-gray-500 dark:text-neutral-400">
-                          Some quick example text to build on the card title and make up the bulk of the card's content.
-                      </p>
-                      <div class="mt-5 sm:mt-auto">
-                          <p class="text-xs text-gray-500 dark:text-neutral-500">
-                              Last updated 5 mins ago
-                          </p>
+                      <div className="mb-4">
+                          <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1"><IoFastFood /><span className='font-medium'>Quantity:</span> {data.quantity}</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1"><IoLocationSharp /><span className='font-medium'> Pickup location:</span> {data.pickupLocation}</p>
+                          <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center gap-1"><BsCalendarCheckFill /><span className='font-medium'>Expiry Date:</span>  {new Date(data.expiryDateTime).toLocaleDateString('en-US', {
+                              year: 'numeric',
+                              month: 'long',
+                              day: 'numeric'
+                          })}</p>
+                          <p className="text-sm text-gray-600 text-balance dark:text-gray-400 flex items-center gap-1"><PiNoteFill /><span className='font-medium'>Notes:</span> {data.additionalNotes}</p>
+                      </div>
+                      <div className="flex items-center gap-3 justify-between">
+                          <div className="flex items-center gap-4">
+                              <img className="w-10 h-10 rounded-full" src={data.donatorImage} alt="Profile" />
+                              <p className="text-sm font-semibold text-gray-800 dark:text-white">{data.donatorName}</p>
+                          </div>
+                          <Link to={`/details/${data._id}`}>
+                              <button className="py-2 px-4 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">View Details</button>
+                          </Link>
                       </div>
                   </div>
               </div>
