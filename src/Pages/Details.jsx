@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import Swal from 'sweetalert2'
 import useAuth from '../Firebase/useAuth'
+import { Helmet } from 'react-helmet-async'
 
 const Details = () => {
   const { user } = useAuth()
@@ -197,6 +198,8 @@ const Details = () => {
   }, [])
   return (
     <div>
+
+      <Helmet title='ShareABite | Food details'></Helmet>
       {
         loading ? <div className="flex animate-pulse">
           <div className="flex-shrink-0">

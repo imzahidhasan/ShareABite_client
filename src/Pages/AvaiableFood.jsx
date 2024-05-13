@@ -6,6 +6,7 @@ import FoodCard from '../Components/FoodCard'
 import { useForm } from 'react-hook-form'
 import FoodCardHorizontal from '../Components/FoodCardHorizontal'
 import { TfiLayoutGrid2Alt, TfiLayoutGrid3Alt } from 'react-icons/tfi'
+import { Helmet } from 'react-helmet-async'
 
 const AvaiableFood = () => {
   const [data, setData] = useState([])
@@ -67,6 +68,7 @@ const AvaiableFood = () => {
 
   }, [])
   return (<>
+    <Helmet title='ShareABite | Available food'></Helmet>
     <div className='container mx-auto'>
       <Heading heading={'Available Foods '} para={'Explore our available food section, a vibrant hub where generosity meets need. Here, we showcase a diverse array of fresh produce, pantry staples, and nourishing meals, generously donated by our community of contributors. From surplus harvests to culinary delights, each offering represents an opportunity to make a meaningful difference. Join us in combating food insecurity and fostering compassion, one meal at a time'} />
       <div className='flex flex-col-reverse sm:flex-row sm:justify-around'>

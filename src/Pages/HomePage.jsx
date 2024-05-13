@@ -3,6 +3,7 @@ import Heading from '../Components/Heading'
 import axios from 'axios'
 import FoodCard from '../Components/FoodCard'
 import video from '../assets/bg_video.mp4'
+import { Helmet } from 'react-helmet-async'
 const HomePage = () => {
   const [foods, setFoods] = useState([])
   const [loading, setLoading] = useState(false)
@@ -23,6 +24,7 @@ const HomePage = () => {
   }, [])
   return (
     <>
+      <Helmet title='ShareABite | Home'></Helmet>
       <div className="relative bg-[#186F65] text-[#d8dcd2]">
         <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
           <source src={video} type="video/mp4" />

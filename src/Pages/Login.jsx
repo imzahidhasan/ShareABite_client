@@ -4,6 +4,7 @@ import useAuth from '../Firebase/useAuth'
 import { GithubAuthProvider, GoogleAuthProvider } from 'firebase/auth'
 import Lottie from 'lottie-react'
 import login from '../assets/login.json'
+import { Helmet } from 'react-helmet-async'
 const Login = () => {
     const googleProvider = new GoogleAuthProvider
     const githubProver = new GithubAuthProvider
@@ -37,6 +38,7 @@ const Login = () => {
 
     return (
         <>
+            <Helmet title='ShareABite | Login'></Helmet>
             {
                 user ? <Navigate to={'/'} />
                     : <div className='flex flex-col-reverse container mx-auto md:flex-row'>

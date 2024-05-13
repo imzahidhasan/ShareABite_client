@@ -4,6 +4,7 @@ import useAuth from '../Firebase/useAuth';
 import { Link, Navigate } from 'react-router-dom';
 import signup from '../assets/signup.json'
 import Lottie from 'lottie-react';
+import { Helmet } from 'react-helmet-async';
 const SignUp = () => {
     const { createUser, updateUser, user } = useAuth()
     const {
@@ -25,6 +26,7 @@ const SignUp = () => {
 
     return (
         <>
+            <Helmet title='ShareABite | Sign Up'></Helmet>
             {
                 user ? <Navigate to={'/'} />
                     :

@@ -5,6 +5,7 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 import Lottie from 'lottie-react'
 import cook from '../assets/cook.json'
+import { Helmet } from 'react-helmet-async'
 
 const AddFood = () => {
   const { user } = useAuth()
@@ -53,6 +54,7 @@ const AddFood = () => {
 
   return (
     <div className='container mx-auto'>
+      <Helmet title='ShareABite | Add Food'></Helmet>
       <div className="bg-[#F8F4E3] min-h-screen flex flex-col-reverse md:flex-row items-center justify-center">
         <Lottie className='md:w-1/2' animationData={cook}/>
         <div className="bg-white md:w-1/2 w-full p-8 rounded-lg m-5 shadow-md max-w-md">

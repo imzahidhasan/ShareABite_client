@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import useAuth from '../Firebase/useAuth'
 import Swal from 'sweetalert2'
+import { Helmet } from 'react-helmet-async'
 
 const ManageMyFood = () => {
   const { user } = useAuth()
@@ -164,6 +165,7 @@ const ManageMyFood = () => {
   }
   return (
     <div>
+      <Helmet title='ShareABite | Manage my food'></Helmet>
       <div className="bg-[#F6EEE0] min-h-screen py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold text-[#A98467] mb-8">Manage My Foods</h1>
