@@ -1,7 +1,8 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth'
 import React, { createContext, useEffect, useState } from 'react'
-export const FirebaseContext=createContext(null)
+export const FirebaseContext = createContext(null)
 import auth from './firebase.config'
+import axios from 'axios'
 
 
 const FirebaseProvider = ({ children }) => {
@@ -36,9 +37,11 @@ const FirebaseProvider = ({ children }) => {
     }
     useEffect(() => {
         setLoading(true)
-        const unSubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user)
+        const unSubscribe = onAuthStateChanged(auth, async (data) => {
+            const email = data.email;
+            await axios.post('http://localhost:5000/jwt', { email }, { withCredentials: true })
+            if (data) {
+                setUser(data)
             }
             setLoading(false)
         })
@@ -58,11 +61,11 @@ const FirebaseProvider = ({ children }) => {
         setLoading
     }
 
-  return (
-      <FirebaseContext.Provider value={AllValues}>
-          {children}
-    </FirebaseContext.Provider>
-  )
+    return (
+        <FirebaseContext.Provider value={AllValues}>
+            {children}
+        </FirebaseContext.Provider>
+    )
 }
 
 export default FirebaseProvider

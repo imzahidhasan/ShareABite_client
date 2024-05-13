@@ -9,12 +9,18 @@ const ManageMyFood = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const getAllData = async () => {
-    await axios.get(`http://localhost:5000/manage_post/${user.email}`)
+    await axios.post(`http://localhost:5000/manage_post/${user.email}`, {email:user.email}, { withCredentials: true })
       .then(res => {
         setData(res.data)
         setLoading(false)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        Swal.fire({
+          title: `${err.response.status}`,
+          text: `${err.response.data.message}`,
+          icon: "error"
+        })
+      })
   }
   useEffect(() => {
     setLoading(true)
@@ -113,7 +119,8 @@ const ManageMyFood = () => {
           }
         },);
       if (formValues) {
-        await axios.put(`http://localhost:5000/update/${id}`, formValues).then(res => {
+        await axios.put(`http://localhost:5000/update/${id}`, formValues,{withCredentials:true})
+          .then(res => {
           if (res.data.modifiedCount>0) {
             Swal.fire(
               {
@@ -123,15 +130,15 @@ const ManageMyFood = () => {
             },
               getAllData()
             )
-          } else {
+          } 
+          })
+          .catch(err => {
             Swal.fire({
-              title: "Error!",
-              text: "Connection timed out!",
+              title: `${err.response.status}`,
+              text: `${err.response.data.message}`,
               icon: "error"
             })
-          }
-        })
-       
+          })
       }
     })()
 
@@ -149,7 +156,7 @@ const ManageMyFood = () => {
       confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await axios.delete(`http://localhost:5000/delete/${id}`)
+        await axios.delete(`http://localhost:5000/delete/${id}`,{withCredentials:true})
           .then(res => {
             if (res.data.deletedCount>0) {
               getAllData()
@@ -160,6 +167,15 @@ const ManageMyFood = () => {
               })
             }
           })
+          .catch(err => {
+            console.log(err);
+
+            Swal.fire({
+              title: `${err.response.status}`,
+              text: `${err.response.data.message}`,
+              icon: "error"
+            })
+        })
       }
     })
   }

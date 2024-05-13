@@ -12,12 +12,20 @@ const Details = () => {
   const { id } = useParams()
   const fetchData = async () => {
     setLoading(true)
-    await axios.get(`http://localhost:5000/details/${id}`)
+    await axios.post(`http://localhost:5000/details/${id}`,{email:user.email},{withCredentials:true})
       .then(res => {
         setLoading(false)
         setData(res.data)
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        console.log(err);
+        Swal.fire({
+          title: `${err.response.status}`,
+          text: `${err.response.data.message}`,
+          icon:'warning'
+       })
+        
+      })
   }
 
   const handleFoodRequest = (food) => {
@@ -198,7 +206,6 @@ const Details = () => {
   }, [])
   return (
     <div>
-
       <Helmet title='ShareABite | Food details'></Helmet>
       {
         loading ?<div className="flex animate-pulse">
@@ -211,7 +218,7 @@ const Details = () => {
               <li className="w-full h-12 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
             </ul>
           </div>
-        </div>
+        </div> 
           : <div className="bg-[#F6EEE0] min-h-screen py-8">
             <div className="container mx-auto px-4">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">

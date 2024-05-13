@@ -18,8 +18,8 @@ const SignUp = () => {
     const onSubmit = (data) => {
         const { name, email, password, photoURL } = data
         createUser(email, password)
-            .then(user => {
-                updateUser(name, photoURL)
+            .then((data) => {
+                 updateUser(name, photoURL)
                 Swal.fire({
                     title: 'Successful',
                     text: 'your account created successfully',

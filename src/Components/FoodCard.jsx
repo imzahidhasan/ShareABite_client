@@ -1,5 +1,5 @@
 import React from 'react'
-import { BsCalendar2DayFill, BsCalendarCheckFill } from 'react-icons/bs'
+import { BsCalendarCheckFill } from 'react-icons/bs'
 import { IoFastFood, IoLocationSharp } from 'react-icons/io5'
 import { PiNoteFill } from 'react-icons/pi'
 import { Link } from 'react-router-dom'

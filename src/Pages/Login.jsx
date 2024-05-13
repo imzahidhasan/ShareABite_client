@@ -24,8 +24,12 @@ const Login = () => {
     const onSubmit = (data) => {
         const { email, password } = data
         loginUser(email, password)
-            .then(user => {
-                console.log(user);
+            .then((data) => {
+                Swal.fire({
+                    title: 'Login successful',
+                    text: 'you successfully login to your account',
+                    icon:'success'
+                })
                 navigate(location.state || '/')
             })
             .catch(err => {
@@ -42,6 +46,12 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleLogin(googleProvider)
+            .then( (data) => {
+                navigate(location.state || '/')
+            })
+    }
+    const handleGithubLogin = () => {
+        githubLogin(githubProver)
             .then(async (data) => {
                 const email = data.user.email;
                 await axios.post('http://localhost:5000/jwt', { email }, { withCredentials: true })
@@ -50,10 +60,6 @@ const Login = () => {
                     })
                 navigate(location.state || '/')
             })
-    }
-    const handleGithubLogin = () => {
-        githubLogin(githubProver)
-            .then(user => navigate(location.state || '/'))
     }
 
     return (

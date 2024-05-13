@@ -6,7 +6,7 @@ const MyFoodRequest = () => {
   const [data, setData] = useState([])
   const { user } = useAuth()
   const fetchData = async () => {
-    await axios.get(`http://localhost:5000/request_data/${user.email}`)
+    await axios.get(`http://localhost:5000/request_data/${user.email}`,{withCredentials:true})
       .then(res => {
         setData(res.data)
       }).catch(err=>console.log(err))

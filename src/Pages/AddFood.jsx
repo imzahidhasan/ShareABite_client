@@ -26,7 +26,7 @@ const AddFood = () => {
       status: 'available',
     }
     const saveFoodToDB = async () => {
-      await axios.post('http://localhost:5000/add_food', foodInfo)
+      await axios.post('http://localhost:5000/add_food', foodInfo,{withCredentials:true})
         .then(res => {
           if (res.data.insertedId) {
             Swal.fire({
@@ -38,9 +38,10 @@ const AddFood = () => {
         })
         .catch(err => {
           if (err) {
+            console.log(err);
             Swal.fire({
-              title: "Error!",
-              text: "Oops! It seems there's an issue with the network. Please check your internet connection and try again.",
+              title: `${err.response.status}`,
+              text: `${err.response.data.message}`,
               icon: "error"
             })
           }

@@ -1,12 +1,15 @@
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import useAuth from '../Firebase/useAuth'
+import axios from 'axios'
 
 const Navbar = ({ darkMode, toggleDarkMode }) => {
   const { user, logout,setUser } = useAuth()
-  const handleLogOut = () => {
+  const handleLogOut =async (email) => {
     logout()
     setUser(null)
+    await axios.post('http://localhost:5000/logout', { email },{withCredentials:true})
+    .then(res=>console.log(res.data))
   }
   const Navlinks = <>
     
@@ -23,7 +26,7 @@ const Navbar = ({ darkMode, toggleDarkMode }) => {
       <div>
       <div class="flex gap-2 items-center" >
         <img class="inline-block size-8 rounded-full" src={user.photoURL} alt="Image Description" />
-        <button onClick={handleLogOut} type="button" className="py-2 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+          <button onClick={() => handleLogOut(user.email)} type="button" className="py-2 px-2 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
           Logout
         </button>
       </div>
