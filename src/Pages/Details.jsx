@@ -12,7 +12,7 @@ const Details = () => {
   const { id } = useParams()
   const fetchData = async () => {
     setLoading(true)
-    await axios.post(`http://localhost:5000/details/${id}`,{email:user.email},{withCredentials:true})
+    await axios.post(`https://share-ab-ite-server.vercel.app/details/${id}`, { email: user.email }, { withCredentials: true })
       .then(res => {
         setLoading(false)
         setData(res.data)
@@ -22,9 +22,9 @@ const Details = () => {
         Swal.fire({
           title: `${err.response.status}`,
           text: `${err.response.data.message}`,
-          icon:'warning'
-       })
-        
+          icon: 'warning'
+        })
+
       })
   }
 
@@ -189,7 +189,7 @@ const Details = () => {
           }
         },);
       if (formValues) {
-        await axios.put(`http://localhost:5000/update_request_data`, formValues)
+        await axios.put(`https://share-ab-ite-server.vercel.app/update_request_data`, formValues ,{withCredentials:true})
           .then(res => {
             Swal.fire({
               title: 'Request Successful!',
@@ -208,7 +208,7 @@ const Details = () => {
     <div>
       <Helmet title='ShareABite | Food details'></Helmet>
       {
-        loading ?<div className="flex animate-pulse">
+        loading ? <div className="flex animate-pulse">
           <div className="ms-4 mt-2 w-full">
             <p className="h-12 bg-gray-200 rounded-full dark:bg-neutral-700" ></p>
             <ul className="mt-5 space-y-3">
@@ -218,7 +218,7 @@ const Details = () => {
               <li className="w-full h-12 bg-gray-200 rounded-full dark:bg-neutral-700"></li>
             </ul>
           </div>
-        </div> 
+        </div>
           : <div className="bg-[#F6EEE0] min-h-screen py-8">
             <div className="container mx-auto px-4">
               <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -250,7 +250,7 @@ const Details = () => {
                       <span className='text-white bg-green-600 px-2 rounded-full'>{data.status}</span>
                     </div>
                   </div>
-                  
+
                   <h1 className='text-xl font-semibold mb-2'>Donator Information</h1>
                   <div className="flex items-center mb-4">
                     <img
@@ -262,7 +262,7 @@ const Details = () => {
                       <p className="text-gray-600">{data.pickupLocation}</p>
                     </div>
                   </div>
-                  
+
                   <button onClick={() => handleFoodRequest(data)} className="bg-[#A98467] hover:bg-[#8d6f56] text-white font-semibold py-2 px-4 rounded">
                     Request Food
                   </button>

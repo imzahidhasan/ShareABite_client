@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import Heading from '../Components/Heading'
-import { Link } from 'react-router-dom'
 import axios from 'axios'
 import FoodCard from '../Components/FoodCard'
 import { useForm } from 'react-hook-form'
@@ -20,7 +19,7 @@ const AvaiableFood = () => {
 
   const fetchSearchData = async (data) => {
     setLoading(true)
-    await axios.get(`http://localhost:5000/search_name/${data.searchName}`)
+    await axios.get(`https://share-ab-ite-server.vercel.app/search_name/${data.searchName}`)
       .then(res => {
         setData(res.data)
         setLoading(false)
@@ -34,7 +33,7 @@ const AvaiableFood = () => {
   }
   const NewToOld = async () => {
     setLoading(true)
-    await axios.get('http://localhost:5000/sort_acceding')
+    await axios.get('https://share-ab-ite-server.vercel.app/sort_acceding')
       .then(res => {
         setData(res.data)
         setLoading(false)
@@ -43,7 +42,7 @@ const AvaiableFood = () => {
   }
   const OldToNew = async () => {
     setLoading(true)
-    await axios.get('http://localhost:5000/sort_descending')
+    await axios.get('https://share-ab-ite-server.vercel.app/sort_descending')
       .then(res => {
         setData(res.data)
         setLoading(false)

@@ -9,7 +9,7 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false)
   const fetchData = async () => {
     setLoading(true)
-    await axios.get('http://localhost:5000/available_food/highest_quantity')
+    await axios.get('https://share-ab-ite-server.vercel.app/available_food/highest_quantity')
       .then(res => {
         setLoading(false)
         setFoods(res.data)
@@ -19,7 +19,7 @@ const HomePage = () => {
 
   useEffect(() => {
     fetchData()
-   
+
 
   }, [])
   return (

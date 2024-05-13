@@ -6,10 +6,10 @@ const MyFoodRequest = () => {
   const [data, setData] = useState([])
   const { user } = useAuth()
   const fetchData = async () => {
-    await axios.get(`http://localhost:5000/request_data/${user.email}`,{withCredentials:true})
+    await axios.get(`https://share-ab-ite-server.vercel.app/request_data/${user.email}`, { withCredentials: true })
       .then(res => {
         setData(res.data)
-      }).catch(err=>console.log(err))
+      }).catch(err => console.log(err))
   }
   useEffect(() => {
     fetchData()

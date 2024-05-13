@@ -28,7 +28,7 @@ const Login = () => {
                 Swal.fire({
                     title: 'Login successful',
                     text: 'you successfully login to your account',
-                    icon:'success'
+                    icon: 'success'
                 })
                 navigate(location.state || '/')
             })
@@ -46,7 +46,7 @@ const Login = () => {
 
     const handleGoogleLogin = () => {
         googleLogin(googleProvider)
-            .then( (data) => {
+            .then((data) => {
                 navigate(location.state || '/')
             })
     }
@@ -54,7 +54,7 @@ const Login = () => {
         githubLogin(githubProver)
             .then(async (data) => {
                 const email = data.user.email;
-                await axios.post('http://localhost:5000/jwt', { email }, { withCredentials: true })
+                await axios.post('https://share-ab-ite-server.vercel.app/jwt', { email }, { withCredentials: true })
                     .then(res => {
                         console.log(res.data);
                     })

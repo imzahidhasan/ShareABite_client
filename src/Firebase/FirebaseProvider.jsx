@@ -39,7 +39,7 @@ const FirebaseProvider = ({ children }) => {
         setLoading(true)
         const unSubscribe = onAuthStateChanged(auth, async (data) => {
             const email = data.email;
-            await axios.post('http://localhost:5000/jwt', { email }, { withCredentials: true })
+            await axios.post('https://share-ab-ite-server.vercel.app/jwt', { email }, { withCredentials: true })
             if (data) {
                 setUser(data)
             }

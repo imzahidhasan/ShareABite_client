@@ -9,7 +9,7 @@ const ManageMyFood = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const getAllData = async () => {
-    await axios.post(`http://localhost:5000/manage_post/${user.email}`, {email:user.email}, { withCredentials: true })
+    await axios.post(`https://share-ab-ite-server.vercel.app/manage_post/${user.email}`, { email: user.email }, { withCredentials: true })
       .then(res => {
         setData(res.data)
         setLoading(false)
@@ -62,7 +62,7 @@ const ManageMyFood = () => {
                 Food Quantity
               </label>
               <input
-                type="number"
+                type="text"
                 id="foodQuantity"
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 placeholder="Enter food quantity"
@@ -119,18 +119,18 @@ const ManageMyFood = () => {
           }
         },);
       if (formValues) {
-        await axios.put(`http://localhost:5000/update/${id}`, formValues,{withCredentials:true})
+        await axios.put(`https://share-ab-ite-server.vercel.app/update/${id}`, formValues, { withCredentials: true })
           .then(res => {
-          if (res.data.modifiedCount>0) {
-            Swal.fire(
-              {
-              title: "Successful",
-              text: "Your food information updated successfully",
-              icon: "success"
-            },
-              getAllData()
-            )
-          } 
+            if (res.data.modifiedCount > 0) {
+              Swal.fire(
+                {
+                  title: "Successful",
+                  text: "Your food information updated successfully",
+                  icon: "success"
+                },
+                getAllData()
+              )
+            }
           })
           .catch(err => {
             Swal.fire({
@@ -156,9 +156,9 @@ const ManageMyFood = () => {
       confirmButtonText: "Yes, delete it!"
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await axios.delete(`http://localhost:5000/delete/${id}`,{withCredentials:true})
+        await axios.delete(`https://share-ab-ite-server.vercel.app/delete/${id}`, { withCredentials: true })
           .then(res => {
-            if (res.data.deletedCount>0) {
+            if (res.data.deletedCount > 0) {
               getAllData()
               Swal.fire({
                 title: "Deleted!",
@@ -175,7 +175,7 @@ const ManageMyFood = () => {
               text: `${err.response.data.message}`,
               icon: "error"
             })
-        })
+          })
       }
     })
   }
