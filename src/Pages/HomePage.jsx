@@ -4,6 +4,7 @@ import axios from 'axios'
 import FoodCard from '../Components/FoodCard'
 import video from '../assets/bg_video.mp4'
 import { Helmet } from 'react-helmet-async'
+import Faq from '../Components/Faq'
 const HomePage = () => {
   const [foods, setFoods] = useState([])
   const [loading, setLoading] = useState(false)
@@ -23,7 +24,7 @@ const HomePage = () => {
 
   }, [])
   return (
-    <>
+    <div div className='container mx-auto'>
       <Helmet title='ShareABite | Home'></Helmet>
       <div className="relative bg-[#186F65] text-[#d8dcd2]">
         <video autoPlay loop muted className="absolute inset-0 w-full h-full object-cover">
@@ -86,7 +87,11 @@ const HomePage = () => {
             foods.map((foodItem) => <FoodCard key={foodItem._id} data={foodItem} />)
         }
       </div>
-    </>
+      <div>
+        <Heading heading={'Frequently Asked Questions'} para={`We understand that you may have questions about our Community Food Sharing and Surplus Reduction Platform. To help you better understand how it works and address any concerns, we've compiled a list of frequently asked questions and their answers. If you can't find what you're looking for here, please don't hesitate to reach out to us directly`} />
+        <Faq />
+      </div>
+    </div>
   )
 }
 
