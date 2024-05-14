@@ -100,7 +100,7 @@ const AvaiableFood = () => {
         </form>
       </div>
 
-      <div className={`grid grid-cols-1 ${layout ? 'lg:grid-cols-2' : 'lg:grid-cols-3'} gap-4 m-5`}>
+      <div className={`grid grid-cols-1 ${layout ? 'lg:grid-cols-2' : 'lg:grid-cols-3'} gap-8 m-5`}>
         {
           loading ? <div className="flex animate-pulse">
             <div className="ms-4 mt-2 w-full">

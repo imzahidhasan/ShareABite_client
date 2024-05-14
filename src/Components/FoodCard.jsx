@@ -3,10 +3,13 @@ import { BsCalendarCheckFill } from 'react-icons/bs'
 import { IoFastFood, IoLocationSharp } from 'react-icons/io5'
 import { PiNoteFill } from 'react-icons/pi'
 import { Link } from 'react-router-dom'
-
+import { motion } from 'framer-motion'
 const FoodCard = ({ data }) => {
   return (
-      <div>
+      <motion.div whileTap={{ scale: 0.9 }} whileHover={{
+          scale: 1.1,
+          transition: { duration: 0.3 },
+      }}>
           <div className="flex flex-col bg-white border border-gray-200 shadow-md rounded-xl overflow-hidden dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70 relative">
               <img className="w-full h-48 object-cover rounded-t-xl" src={data.foodImage} alt="Food" />
               <span className="absolute top-2 right-2 bg-green-500 text-white text-xs font-semibold py-1 px-2 rounded-full">{data.status}</span>
@@ -29,12 +32,12 @@ const FoodCard = ({ data }) => {
                           <p className="text-sm font-semibold text-gray-800 dark:text-white">{data.donatorName}</p>
                       </div>
                       <Link to={`/details/${data._id}`}>
-                          <button className="py-2 px-4 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">View Details</button>
+                          <motion.button whileTap={{ scale: 0.9 }} className="py-2 px-4 bg-blue-600 text-white text-sm font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none">View Details</motion.button>
                       </Link>
                   </div>
               </div>
           </div>
-    </div>
+    </motion.div>
   )
 }
 
