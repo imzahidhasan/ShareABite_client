@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import "preline/preline";
 import { IStaticMethods } from "preline/preline";
+import Headroom from "react-headroom";
 
 function App() {
   const location = useLocation();
@@ -27,13 +28,15 @@ function App() {
     localStorage.setItem('darkMode', JSON.stringify(darkMode));
   }, [darkMode]);
 
-  
+
   return (
     <div className={darkMode ? 'dark bg-[#222831] text-[#EEEEEE]' : ''}>
-      <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+      <Headroom >
+        <Navbar toggleDarkMode={toggleDarkMode} darkMode={darkMode} />
+      </Headroom>
       <div className="min-h-96">
         <Outlet />
-     </div>
+      </div>
       <Footer />
     </div>
   );
