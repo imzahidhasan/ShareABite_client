@@ -59,7 +59,7 @@ const routes = createBrowserRouter([
             },
             {
                 path: '/give_review',
-                element:<GiveReview/>
+                element: <PrivetRoute><GiveReview /></PrivetRoute>
             }
         ]
     }
