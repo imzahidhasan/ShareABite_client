@@ -6,7 +6,7 @@ import video from '../assets/bg_video.mp4'
 import { Helmet } from 'react-helmet-async'
 import Faq from '../Components/Faq'
 import TestimonialCard from '../Components/TestimonialCard'
-import testimonial from '../assets/testimonial.json'
+
 import { Link } from 'react-router-dom'
 import Chart from '../Components/Chart'
 import { motion } from 'framer-motion'
@@ -22,10 +22,18 @@ const HomePage = () => {
       })
       .catch(err => console.log(err))
   }
+  const [testimonial, setTestimonial] = useState([])
+  const data = () => {
+    axios.get('http://localhost:5000/reviews')
+      .then(res => setTestimonial(res.data))
+  }
+
+
+
 
   useEffect(() => {
     fetchData()
-
+    data()
 
   }, [])
   return (<>
@@ -40,7 +48,7 @@ const HomePage = () => {
           <motion.div initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.4 }} className="relative max-w-2xl sm:mx-auto sm:max-w-xl md:max-w-2xl sm:text-center">
-            <h2  className="mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
+            <h2 className="mb-6 font-sans text-3xl font-bold tracking-tight text-white sm:text-4xl sm:leading-none">
               Transforming surplus into substance for community bellies, and a healthier environment
             </h2>
             <p className="mb-6 text-base  md:text-lg">
@@ -58,8 +66,8 @@ const HomePage = () => {
             >
               <motion.svg
                 initial={{ x: 0 }}
-                animate={{ y:50 }}
-                transition={{ duration: 1, repeat: Infinity, repeatType:'loop'}}
+                animate={{ y: 50 }}
+                transition={{ duration: 1, repeat: Infinity, repeatType: 'loop' }}
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="12"
@@ -95,27 +103,30 @@ const HomePage = () => {
               </div>
             </div> :
               foods.map((foodItem) => <FoodCard key={foodItem._id} data={foodItem} />)
-             
+
           }
-          
+
         </div>
         <Link className='flex justify-center' to={'/available_food'}>
-          <motion.button whileHover={{scale:1.1}} type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-blue-600 hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:border-blue-500 dark:text-blue-500 dark:hover:text-blue-400 dark:hover:border-blue-400">
-          Show All
-        </motion.button></Link>
+          <motion.button whileHover={{ scale: 1.1 }} type="button" class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-blue-600 text-blue-600 hover:border-blue-500 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:border-blue-500 dark:text-blue-500 dark:hover:text-blue-400 dark:hover:border-blue-400">
+            Show All
+          </motion.button></Link>
         <Heading heading={'Testimonials'} para={`Explore heartfelt messages from donors who have graciously shared why they choose to support our mission. Their stories illuminate the compassion and dedication behind each contribution, underscoring the profound impact of collective generosity in combating hunger and transforming lives.`} />
         <div className='grid grid-cols-1 md:grid-cols-3 gap-2'>
           {
-            testimonial.map(data => <TestimonialCard key={data.pic} data={data} />)
+            testimonial.slice(0,9).map(data => <TestimonialCard key={data.pic} data={data} />)
           }
         </div>
+        <div className='flex justify-center items-center'>
+          <Link to={'/reviews'}><button className=' mt-4 text-center py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none'>Show All Review</button></Link>
+        </div>
         <Heading heading={'Our Impacts'} para={`Explore the tangible impact of our work on individuals and families as we illuminate the transformative journey from struggle to empowerment. Witness firsthand the positive changes our initiatives bring to the lives of those we serve, from providing nourishment to fostering resilience and hope. Join us in celebrating the meaningful difference we make, one person, one family at a time.`} />
-        <Chart/>
+        <Chart />
         <div>
           <Heading heading={'Frequently Asked Questions'} para={`We understand that you may have questions about our Community Food Sharing and Surplus Reduction Platform. To help you better understand how it works and address any concerns, we've compiled a list of frequently asked questions and their answers. If you can't find what you're looking for here, please don't hesitate to reach out to us directly`} />
           <Faq />
         </div>
-         
+
       </div>
     </div>
   </>

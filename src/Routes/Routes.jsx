@@ -10,6 +10,8 @@ import Login from "../Pages/Login"
 import SignUp from "../Pages/SignUp"
 import PrivetRoute from "./PrivetRoute"
 import Details from "../Pages/Details"
+import Review from "../Pages/Review"
+import GiveReview from "../Pages/GiveReview"
 
 
 
@@ -50,6 +52,14 @@ const routes = createBrowserRouter([
             {
                 path: 'details/:id',
                 element:<PrivetRoute><Details/></PrivetRoute>
+            },
+            {
+                path: '/reviews',
+                element: <PrivetRoute><Review /></PrivetRoute>
+            },
+            {
+                path: '/give_review',
+                element:<GiveReview/>
             }
         ]
     }
