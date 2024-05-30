@@ -14,8 +14,8 @@ const Details = () => {
     setLoading(true)
     await axios.post(`https://share-ab-ite-server.vercel.app/details/${id}`, { email: user.email }, { withCredentials: true })
       .then(res => {
-        setLoading(false)
         setData(res.data)
+        setLoading(false)
       })
       .catch(err => {
         console.log(err);

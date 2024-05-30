@@ -6,7 +6,7 @@ import Heading from '../Components/Heading'
 const Review = () => {
     const [review, setReview] = useState([])
     const data = () => {
-        axios.get('http://localhost:5000/reviews')
+        axios.get('https://share-ab-ite-server.vercel.app/reviews')
             .then(res => setReview(res.data))
     }
     useEffect(() => {

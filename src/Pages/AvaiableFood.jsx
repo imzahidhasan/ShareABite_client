@@ -22,8 +22,8 @@ const AvaiableFood = () => {
     await axios.get(`https://share-ab-ite-server.vercel.app/search_name/${data.searchName}`)
       .then(res => {
         setData(res.data)
-        setLoading(false)
       })
+      setLoading(false)
   }
 
   const onSubmit = (data) => {

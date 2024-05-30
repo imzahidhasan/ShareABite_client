@@ -24,7 +24,7 @@ const HomePage = () => {
   }
   const [testimonial, setTestimonial] = useState([])
   const data = () => {
-    axios.get('http://localhost:5000/reviews')
+    axios.get('https://share-ab-ite-server.vercel.app/reviews')
       .then(res => setTestimonial(res.data))
   }
 
@@ -114,7 +114,7 @@ const HomePage = () => {
         <Heading heading={'Testimonials'} para={`Explore heartfelt messages from donors who have graciously shared why they choose to support our mission. Their stories illuminate the compassion and dedication behind each contribution, underscoring the profound impact of collective generosity in combating hunger and transforming lives.`} />
         <div className='grid grid-cols-1 md:grid-cols-3 gap-2'>
           {
-            testimonial.slice(0,9).map(data => <TestimonialCard key={data.pic} data={data} />)
+            testimonial.slice(0, 9).map(data => <TestimonialCard key={data.pic} data={data} />)
           }
         </div>
         <div className='flex justify-center items-center'>
