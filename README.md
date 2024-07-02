@@ -1,8 +1,16 @@
-# React + Vite
+**ShareABite** is a vibrant community-driven platform designed to facilitate the sharing of food. It enables users to connect, share, and track food items with ease.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### 🔑 Key Features
 
-Currently, two official plugins are available:
+-    **Integrated Search and Sorting**: Users can effortlessly find what they need with powerful search and sorting functionalities.
+-    **Customizable Layout Options**: Users can personalize their experience with various layout choices.
+-    **CRUD Operations for Food Listings**: Users can add, update, and delete shared food listings seamlessly.
+-    **View Requested Items**: Users can access detailed information on requested food items to keep track of their requests.
+-    **Request Tracking**: Users can monitor the status and details of their food item requests effortlessly.
+- 
+###  Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   **Frontend**: React.js,Javascript, Tailwind CSS
+-   **Backend**:  Express.js
+-   **Database**: MongoDB
+-   **Authentication**: JWT (JSON Web Token)
